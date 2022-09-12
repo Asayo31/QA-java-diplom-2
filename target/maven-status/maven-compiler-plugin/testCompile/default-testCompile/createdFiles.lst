@@ -1,0 +1,6 @@
+user/CreatUserWithoutRequiredParamsTest.class
+user/UserDataChangeTest.class
+user/CreateUserTest.class
+order/CreateOrderTest.class
+order/GetOrdersUserTest.class
+user/LoginUserTest.class

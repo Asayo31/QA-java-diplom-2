@@ -1,0 +1,10 @@
+burgers/order/Ingredients.class
+burgers/user/UserCredentials.class
+burgers/user/UserClient.class
+burgers/user/Token.class
+burgers/order/OrderClient.class
+burgers/order/Owner.class
+burgers/order/Order.class
+burgers/user/User.class
+burgers/RestAssuredBurger.class
+burgers/order/Ingredient.class
