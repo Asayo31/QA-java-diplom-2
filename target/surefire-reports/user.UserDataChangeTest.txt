@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: user.UserDataChangeTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 20.719 s - in user.UserDataChangeTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.292 s - in user.UserDataChangeTest

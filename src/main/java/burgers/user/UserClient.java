@@ -2,6 +2,7 @@ package burgers.user;
 
 import burgers.RestAssuredBurger;
 import com.google.gson.JsonObject;
+import io.qameta.allure.Step;
 
 public class UserClient extends RestAssuredBurger {
     private final String LOGIN_URL = "/auth/login";
@@ -9,6 +10,7 @@ public class UserClient extends RestAssuredBurger {
     private final String REGISTRATION_URL = "/auth/register";
     private final String USER_URL = "/auth/user";
 
+    @Step("Получаем токен")
     public Token login(UserCredentials creds) {
         var response = reqSpec
                 .body(creds)
@@ -21,6 +23,7 @@ public class UserClient extends RestAssuredBurger {
         return new Token(response.path("accessToken"), response.path("refreshToken"));
     }
 
+    @Step ("Авторизация с НЕкорректными параметрами")
     public String loginWithBadParams(UserCredentials creds) {
         return reqSpec
                 .body(creds)
@@ -33,6 +36,7 @@ public class UserClient extends RestAssuredBurger {
                 .path("message");
     }
 
+    @Step ("Разлогин")
     public void logout(Token token) {
         var json = new JsonObject();
         json.addProperty("token", token.getRefreshToken());
@@ -45,6 +49,7 @@ public class UserClient extends RestAssuredBurger {
                 .statusCode(200);
     }
 
+    @Step ("Создание регистрации")
     public Token create(User user) {
         var response = reqSpec
                 .body(user)
@@ -57,6 +62,7 @@ public class UserClient extends RestAssuredBurger {
         return new Token(response.path("accessToken"), response.path("refreshToken"));
     }
 
+    @Step ("Удаление пользователя")
     public void delete(Token token) {
         reqSpec
                 .header("authorization", token.getAccessToken())
@@ -67,6 +73,7 @@ public class UserClient extends RestAssuredBurger {
                 .statusCode(202);
     }
 
+    @Step ("Пользователь с некорректными данными")
     public String createBadUser(User user) {
         return reqSpec
                 .body(user)
@@ -79,6 +86,7 @@ public class UserClient extends RestAssuredBurger {
                 .path("message");
     }
 
+    @Step ("Сменить почту пользователя")
     public String changeUserEmail(Token token, String email) {
         var json = new JsonObject();
         json.addProperty("email", email);
@@ -94,6 +102,7 @@ public class UserClient extends RestAssuredBurger {
                 .path("user.email");
     }
 
+    @Step ("Сменить имя пользователя")
     public String changeUserName(Token token, String name) {
         var json = new JsonObject();
         json.addProperty("name", name);
@@ -109,6 +118,7 @@ public class UserClient extends RestAssuredBurger {
                 .path("user.name");
     }
 
+    @Step ("Сменить пароль пользователя")
     public void changeUserPassword(Token token, String password) {
         var json = new JsonObject();
         json.addProperty("password", password);
@@ -122,6 +132,7 @@ public class UserClient extends RestAssuredBurger {
                 .statusCode(200);
     }
 
+    @Step ("Ошибка пользователя")
     public String changeUserRejection(String json) {
         return reqSpec
                 .body(json)
@@ -134,6 +145,7 @@ public class UserClient extends RestAssuredBurger {
                 .path("message");
     }
 
+    @Step ("Получить данные по почту пользователя")
     public String getUserDataEmail(Token token) {
         return reqSpec
                 .header("authorization", token.getAccessToken())
@@ -146,6 +158,7 @@ public class UserClient extends RestAssuredBurger {
                 .path("user.email");
     }
 
+    @Step ("Получить данные по имени пользователя")
     public String getUserDataName(Token token) {
         return reqSpec
                 .header("authorization", token.getAccessToken())

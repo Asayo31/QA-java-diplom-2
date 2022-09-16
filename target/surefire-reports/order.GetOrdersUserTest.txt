@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: order.GetOrdersUserTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.005 s - in order.GetOrdersUserTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.644 s - in order.GetOrdersUserTest

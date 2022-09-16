@@ -1,5 +1,6 @@
 package burgers.user;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -18,15 +19,18 @@ public class UserCredentials {
         this.password = user.getPassword();
     }
 
+    @Step ("Получение кредов пользователя")
     public static UserCredentials from(User user) {
         return new UserCredentials(user);
     }
 
+    @Step("Ввод неверной почты")
     public UserCredentials UserCredentialsBadEmail(UserCredentials creds) {
         creds.email = RandomStringUtils.randomAlphabetic(5).toLowerCase() + "@yandex.ru";
         return creds;
     }
 
+    @Step ("Ввод неверного пароля")
     public UserCredentials UserCredentialsBadPassword(UserCredentials creds) {
         creds.email = RandomStringUtils.randomAlphabetic(10).toLowerCase();
         return creds;
