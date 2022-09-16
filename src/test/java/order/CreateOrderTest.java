@@ -7,6 +7,7 @@ import burgers.user.Token;
 import burgers.user.User;
 import burgers.user.UserClient;
 import burgers.user.UserCredentials;
+import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
@@ -64,7 +65,7 @@ public class CreateOrderTest {
         token = userClient.create(user);
         UserCredentials creds = UserCredentials.from(user);
         userClient.logout(token);
-        Order order = orderClient.createOrderWihtoutAuthUser(ingredients);
+        Order order = orderClient.createOrderWithoutAuthUser(ingredients);
         token = userClient.login(creds);
         assertNull(message, order.getIngredients());
         assertNull(message, order.get_id());

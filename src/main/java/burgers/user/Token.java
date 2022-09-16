@@ -1,5 +1,6 @@
 package burgers.user;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 
 @Data

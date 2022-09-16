@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
 
 public class GetOrdersUserTest {
     private UserClient userClient;
@@ -69,6 +69,6 @@ public class GetOrdersUserTest {
         userClient.logout(token);
         String actualMessage = orderClientNew.getOrderForNotAuthUser();
         token = userClient.login(creds);
-        assertEquals(message, actualMessage, expectedMessage);
+        assertEquals(message, expectedMessage, actualMessage);
     }
 }

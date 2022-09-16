@@ -29,21 +29,21 @@ public class CreateUserTest {
     @Test
     @DisplayName("Проверка успешной регистрации пользователя с корректным логином, паролем и именем")
     public void userRegistrationSuccess() {
-        String messege = "При попытке регистрации пользователя в теле ответа получен некорретный токен";
+        String message = "При попытке регистрации пользователя в теле ответа получен некорретный токен";
         User user = User.getRandom();
         token = userClient.create(user);
-        assertNotNull(messege, token.getAccessToken());
-        assertNotNull(messege, token.getRefreshToken());
+        assertNotNull(message, token.getAccessToken());
+        assertNotNull(message, token.getRefreshToken());
     }
 
     @Test
     @DisplayName("Проверка не успешной регистрации дубликата пользователя")
     public void userRegistrationDublicate() {
-        String messege = "При попытке создания дубликата пользователя в теле ответа вернулось сообщение отлчиное от ожидаемого";
+        String message = "При попытке создания дубликата пользователя в теле ответа вернулось сообщение отлчиное от ожидаемого";
         String expected = "User already exists";
         User user = User.getRandom();
         token = userClient.create(user);
         String actual = userClient.createBadUser(user);
-        assertEquals(messege, expected, actual);
+        assertEquals(message, expected, actual);
     }
 }

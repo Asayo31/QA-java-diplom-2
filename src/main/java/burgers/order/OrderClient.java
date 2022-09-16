@@ -4,6 +4,7 @@ import burgers.RestAssuredBurger;
 import burgers.user.Token;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class OrderClient extends RestAssuredBurger {
     private final String ORDER_URL = "/orders";
     private final String INGREDIENTS_URL = "/ingredients";
 
+    @Step("Получить список ингридиентов")
     public List<String> getListIngredients(int countIngredients) {
         Random rand = new Random();
         List<String> allIdIngredients = reqSpec
@@ -31,6 +33,7 @@ public class OrderClient extends RestAssuredBurger {
         return ingredientsForBurger;
     }
 
+    @Step ("Создать заказ авторизованным пользователем")
     public Order createOrderWithAuthUser(Token token, Ingredients ingredientsForBurger) {
         var response = reqSpec
                 .header("authorization", token.getAccessToken())
@@ -45,7 +48,8 @@ public class OrderClient extends RestAssuredBurger {
         return new Gson().fromJson(element, Order.class);
     }
 
-    public Order createOrderWihtoutAuthUser(Ingredients ingredientsForBurger) {
+    @Step ("Создать заказ НЕавторизованным пользователем")
+    public Order createOrderWithoutAuthUser(Ingredients ingredientsForBurger) {
         var response = reqSpec
                 .body(ingredientsForBurger)
                 .when()
@@ -58,6 +62,7 @@ public class OrderClient extends RestAssuredBurger {
         return new Gson().fromJson(element, Order.class);
     }
 
+    @Step ("Создать заказ БЕЗ ингридиентов")
     public String createOrderWithoutIngredients(Token token) {
         return reqSpec
                 .header("authorization", token.getAccessToken())
@@ -70,6 +75,7 @@ public class OrderClient extends RestAssuredBurger {
                 .path("message");
     }
 
+    @Step ("Создать заказ с ошибками ингридиентов")
     public void createOrderWitBadHashIngredients(Token token, Ingredients ingredientsForBurger) {
         reqSpec
                 .header("authorization", token.getAccessToken())
@@ -81,6 +87,7 @@ public class OrderClient extends RestAssuredBurger {
                 .statusCode(500);
     }
 
+    @Step ("Получить заказ авторизованным пользователем")
     public List<Integer> getOrderForAuthUser(Token token) {
         return reqSpec
                 .header("authorization", token.getAccessToken())
@@ -93,6 +100,7 @@ public class OrderClient extends RestAssuredBurger {
                 .path("orders.number");
     }
 
+    @Step ("Получить заказ НЕавторизованным пользователем")
     public String getOrderForNotAuthUser() {
         return reqSpec
                 .when()
