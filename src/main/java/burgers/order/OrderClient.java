@@ -45,7 +45,7 @@ public class OrderClient extends RestAssuredBurger {
         return new Gson().fromJson(element, Order.class);
     }
 
-    public Order createOrderWihtoutAuthUser(Ingredients ingredientsForBurger) {
+    public Order createOrderWithoutAuthUser(Ingredients ingredientsForBurger) {
         var response = reqSpec
                 .body(ingredientsForBurger)
                 .when()

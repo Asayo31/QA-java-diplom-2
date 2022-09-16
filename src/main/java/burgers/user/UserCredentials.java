@@ -18,6 +18,10 @@ public class UserCredentials {
         this.password = user.getPassword();
     }
 
+    public static UserCredentials from(User user) {
+        return new UserCredentials(user);
+    }
+
     public UserCredentials UserCredentialsBadEmail(UserCredentials creds) {
         creds.email = RandomStringUtils.randomAlphabetic(5).toLowerCase() + "@yandex.ru";
         return creds;
@@ -26,9 +30,5 @@ public class UserCredentials {
     public UserCredentials UserCredentialsBadPassword(UserCredentials creds) {
         creds.email = RandomStringUtils.randomAlphabetic(10).toLowerCase();
         return creds;
-    }
-
-    public static UserCredentials from(User user) {
-        return new UserCredentials(user);
     }
 }

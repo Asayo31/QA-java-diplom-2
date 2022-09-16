@@ -22,7 +22,7 @@ public class User {
         return new User(email, password, name);
     }
 
-    public static User getRandomWithoutEmail(String email ) {
+    public static User getRandomWithoutEmail(String email) {
         String password = RandomStringUtils.randomAlphabetic(10);
         String name = RandomStringUtils.randomAlphabetic(10);
         return new User(email, password, name);
@@ -34,7 +34,7 @@ public class User {
         return new User(email, password, name);
     }
 
-    public static User getRandomWithoutName( String name) {
+    public static User getRandomWithoutName(String name) {
         String email = RandomStringUtils.randomAlphabetic(5).toLowerCase() + "@yandex.ru";
         String password = RandomStringUtils.randomAlphabetic(10);
         return new User(email, password, name);

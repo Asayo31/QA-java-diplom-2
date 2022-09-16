@@ -1,7 +1,7 @@
 package burgers.user;
 
 import burgers.RestAssuredBurger;
-import com.google.gson.*;
+import com.google.gson.JsonObject;
 
 public class UserClient extends RestAssuredBurger {
     private final String LOGIN_URL = "/auth/login";
@@ -36,7 +36,7 @@ public class UserClient extends RestAssuredBurger {
     public void logout(Token token) {
         var json = new JsonObject();
         json.addProperty("token", token.getRefreshToken());
-         reqSpec
+        reqSpec
                 .body(json.toString())
                 .when()
                 .post(LOGOUT_URL)
